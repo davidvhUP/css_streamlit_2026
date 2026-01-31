@@ -11,7 +11,7 @@ st.set_page_config(page_title="Researcher Profile and STEM Data Explorer", layou
 # Sidebar Menu
 menu = st.sidebar.radio(
     "Pages",
-    ["About me", "Research Specializations", "Education"],
+    ["About me",  "Education", "Research Specializations"],
 )
 
 # Sections based on menu selection
@@ -30,8 +30,35 @@ if menu == "About me":
             """,
             text_alignment='center'
             )
-    
-    st.set_page_config(layout="wide")
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.link_button(
+                "Github",
+                "https://github.com/davidvhUP",
+                icon=":material/code:",
+                type="secondary",
+                use_container_width=True
+                )
+
+    with col2:
+        st.link_button(
+                "LinkedIn",
+                "https://www.linkedin.com/in/david-van-heerden/",
+                icon=":material/business:",
+                type="secondary",
+                use_container_width=True
+                )
+
+    with col3:
+        st.link_button(
+                "Google Scholar",
+                "https://scholar.google.co.za/citations?user=m8mR-I0AAAAJ&hl=en&authuser=1",
+                icon=":material/school:",
+                type="secondary",
+                use_container_width=True
+                )
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------#
@@ -57,8 +84,15 @@ elif menu == "Research Specializations":
     with tab2:
 
 
-        st.title("Breast cancer genetics")
-        st.button("Reset")
+        st.markdown(
+                """
+                # Breast cancer genetics
+
+                Cancer has been known infamously by its brutal symptoms, progression, and difficulty to treat for all of human history. This disease is caused by a genetic error, but not in the sense that we are generally familiar with. Most of the time when genetics is discussed, it is in the context of germline genetics; in other words, hereditary genetics. Hereditary genetics can influence the chance of cancer developing, but this only increases likelihood and is not definite. Each cell in the body carries its own copy of the genome that is no longer linked to the germline cells, and these cells carry a chance of developing mutations on their own. These mutations are referred to as 'somatic mutations' and most frequently lead to the development of cancer. While a lot is known about many frequently mutated genes (such as the TP53 tumor suppressor modelled below) there is still a lot to learn about complex genetic interactions relating to cancer along with the genetics of cancer in historically understudied populations.
+
+                My research involves studying this disease in the African context, attempting to understand more about the diversity of somatic mutations that lead to cancer development in the African population. I use a combination of computational and laboratory techniques to identify and functionally characterise these mutations to aid in the future development of diagnostics and treatments to combat this disease.
+                """
+                )
         with open("p53_and_chain.pdb", 'r')as file:
             if file is not None:
                     # Read the uploaded PDB content
@@ -82,6 +116,7 @@ elif menu == "Research Specializations":
                     view.spin('vy', speed=0.25)
                     showmol(view, height=500, width=1200)
                 st.caption("TP53 protein bound to a segment of DNA. TP53 has two domains; a major and minor binding domain. There are multiple amino acid residues that can interact with the DNA, but a single amino acid contact with the minor groove. The ability for TP53 to bind strongly to DNA, and maintain that bond, is critical to its function. Hence, any mutations that impeded this interaction could severly abrogate TP53 function i.e. DNA damage repair. (Derived from PDB structure 2AC0)")
+        st.button("Reset")
 
 elif menu == "Education":
     st.markdown(
@@ -99,6 +134,20 @@ elif menu == "Education":
 
             ## BSc(Hons) Human Physiology
             My Honours year provided a window into deepening my understanding of human physiology at the molecular level - integrating the concepts I learned in undergrad. This honours program was composed of both course work along with a year-long research project. Rather than conducting a purely _in vitro_ study, I undertook a bioinformatics project analysing genomic breast cancer data to identify novel somtic mutations. This served as an exciting challenge to test the limits of my understanding of physiological function at the molecular level, but with the added challenge of analysing biological data through a different medium.
+
+            **Skills/Knowledge Acquired**
+            - Bash command-line and Python programming
+            - Git version control
+            - Genomics (GATK and Illumina DRAGEN)
+            - R programming
+
+            ## MSc Human Physiology (In Progress)
+            My Masters is aimed at functionally characterising novel mutations identified during my honours. This involves creating wild-type plasmid constructs of these genes, then using site-directed mutagenesis to create mutants which can be transfected into human cell-lines to assay their effects. While computations tools will be used as a guide in prediction and selects likely driver variants, the effects ultimately need to be verified using experiments.
+            **Skills/Knowledge Acquired**
+            - Molecular cloning
+            - Polymerase chain reaction
+            - Laboratory optimisation/troubleshooting
+            - Bacterial cell culture
             """,
             text_alignment='center'
     )
